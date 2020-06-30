@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="110dp"
+    android:id="@+id/delivery_time_ui"
+    android:background="@drawable/field_background"
+     >
+
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_height="wrap_content"
+         android:paddingBottom="0dp"
+        android:text="12"
+         android:fontFamily="sans-serif-smallcaps"
+        android:layout_centerVertical="true"
+        android:textColor="#000"
+        android:textSize="45sp" />
+
+    <TextView
+        android:id="@+id/month"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/date"
+        android:textColor="#000"
+        android:text="JUL\nFRI"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/expecteddelivery"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textSize="16sp"
+         android:layout_toEndOf="@+id/month"
+        android:text="@string/earliest_delivery"
+        android:textColor="#000"
+        android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+        android:layout_marginStart="20dp" />
+
+    <TextView
+        android:id="@+id/deliveryToday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/expecteddelivery"
+        android:layout_alignBottom="@+id/expecteddelivery"
+        android:layout_alignParentStart="@+id/expecteddelivery"
+        android:layout_alignStart="@+id/expecteddelivery"
+        android:layout_marginStart="121dp"
+        android:text="Today"
+        android:visibility="gone"
+        android:textColor="#ff00ddff"
+         />
+
+
+</RelativeLayout>

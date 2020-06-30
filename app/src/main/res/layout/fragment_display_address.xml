@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_toEndOf="@id/notification"
+    android:layout_toStartOf="@id/card_top"
+    android:gravity="start"
+    android:orientation="vertical"
+    tools:showIn="@layout/fragment_dashboard"
+    android:layout_height="60dp">
+     <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/location_home"
+            android:text="MQ 294"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/location_city"
+            android:gravity="center"
+            android:text="Waidhan, MP"
+            android:textSize="16sp"
+            android:drawablePadding="10dp"
+            android:drawableEnd="@drawable/ic_keyboard_arrow_down_black_24dp"
+            android:textColor="#fff"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/actionButton"
+        android:layout_width="@dimen/field_width"
+        android:textSize="@dimen/field_text_size"
+        android:layout_height="@dimen/filed_height"
+        app:cornerRadius="10dp"
+        android:backgroundTint="@color/colorAccent"
+        android:gravity="center"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="#ffffff" />
+<ProgressBar
+    android:layout_width="wrap_content"
+    android:elevation="20dp"
+    android:indeterminateTint="#fff"
+    android:id="@+id/action_button_progressbar"
+    android:layout_centerInParent="true"
+    android:visibility="gone"
+    android:layout_height="wrap_content"/>
+</RelativeLayout>

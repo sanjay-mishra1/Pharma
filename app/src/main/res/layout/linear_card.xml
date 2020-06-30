@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="10dp"
+    android:background="?android:attr/selectableItemBackground"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_marginStart="5dp"
+                android:id="@+id/medicine_img"
+                android:src="@color/gray"
+                android:layout_height="80dp"/>
+
+            <ImageView
+                android:id="@+id/delFromCart"
+                android:layout_width="30dp"
+                android:padding="5dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="-4dp"
+                android:src="@drawable/ic_close_black_24dp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/medicine_name"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/medicine_img"
+                android:maxLines="2"
+                android:text="Name skskfh jkskflsjf ljsflsf jlslfjslf ljslfjlsf jlsljfls lsjflsjdf ljslfjslf ljsljflsdj ljsjlfsjl lsjlfj"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/medicine_price"
+                android:layout_below="@id/medicine_name"
+                android:layout_marginStart="10dp"
+                android:textSize="13sp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/medicine_img"
+                android:maxLines="3"
+                android:layout_toStartOf="@id/quant"
+                android:layout_height="wrap_content"/>
+            <include layout="@layout/quantity_buttons_layout"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/medicine_name"
+                android:id="@+id/quant"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+

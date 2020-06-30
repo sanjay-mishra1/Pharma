@@ -1,0 +1,58 @@
+<shortcuts xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="Search"
+        android:enabled="true"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:shortcutShortLabel="@string/search"
+        android:shortcutLongLabel="@string/search"
+        android:shortcutDisabledMessage="@string/compose_disabled_message1"
+        tools:targetApi="n_mr1">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.pharma"
+            android:targetClass="com.example.pharma.medicine.SearchActivity" />
+        <!-- If your shortcut is associated with multiple intents, include them
+             here. The last intent in the list determines what the user sees when
+             they launch this shortcut. -->
+<!--        <categories android:name="android.shortcut.conversation" />-->
+    </shortcut>
+    <!-- Specify more shortcuts here. -->
+    <shortcut
+        android:shortcutId="view_cart"
+        android:enabled="true"
+        android:icon="@drawable/ic_shopping_cart_white_24dp"
+        android:shortcutShortLabel="@string/view_cart"
+        android:shortcutLongLabel="@string/view_cart"
+        android:shortcutDisabledMessage="@string/compose_disabled_message1"
+        tools:targetApi="n_mr1">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.pharma"
+            android:targetClass="com.example.pharma.CartActivity" />
+        <!-- If your shortcut is associated with multiple intents, include them
+             here. The last intent in the list determines what the user sees when
+             they launch this shortcut. -->
+        <!--        <categories android:name="android.shortcut.conversation" />-->
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="compose"
+        android:enabled="true"
+        android:icon="@drawable/ic_order"
+
+        android:shortcutShortLabel="@string/my_orders"
+        android:shortcutLongLabel="@string/my_orders"
+        android:shortcutDisabledMessage="@string/compose_disabled_message1"
+        tools:targetApi="n_mr1">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.pharma"
+            android:targetClass="com.example.pharma.orders.MyOrdersActivity" />
+        <!-- If your shortcut is associated with multiple intents, include them
+             here. The last intent in the list determines what the user sees when
+             they launch this shortcut. -->
+        <!--        <categories android:name="android.shortcut.conversation" />-->
+    </shortcut>
+
+</shortcuts>

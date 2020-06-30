@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    tools:showIn="@layout/fragment_dashboard"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/editSearch"
+        android:layout_marginBottom="100dp"
+        android:layout_marginEnd="15dp"
+        android:inputType="none"
+        android:textSize="17sp"
+        android:gravity="center_vertical"
+        android:layout_marginStart="15dp"
+        android:background="@drawable/search_bar"
+        android:drawableStart="@drawable/ic_search_black_24dp"
+        android:drawablePadding="15dp"
+        android:drawableTint="#B0B0B0"
+        android:hint="@string/search_medicine"
+        android:paddingStart="15dp"
+        android:paddingEnd="5dp"
+        android:textColorHint="#B0B0B0" />
+
+</RelativeLayout>

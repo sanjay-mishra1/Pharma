@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_marginBottom="100dp"
+    android:layout_height="match_parent">
+
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:background="@color/layout_background"
+    android:id="@+id/recycle"
+    tools:itemCount="3"
+    tools:listitem="@layout/medicine_detail_slots"
+    android:layout_height="match_parent"/>
+</RelativeLayout>

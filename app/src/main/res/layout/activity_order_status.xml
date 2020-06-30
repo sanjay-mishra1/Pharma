@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="200dp"
+        android:src="@color/gray"
+        android:visibility="gone"
+        android:id="@+id/order_status_img"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="200dp"/>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:id="@+id/progressbar"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:textSize="22sp"
+        android:id="@+id/order_status_message"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Please wait"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:paddingStart="16dp"
+        android:id="@+id/successLayout"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:paddingEnd="16dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Order status"
+            android:layout_marginTop="15dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="10dp"
+            android:id="@+id/order_statusTitle"
+            android:textColor="@color/colorAccent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Order Id"
+            android:paddingStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/order_statusTitle"
+            android:id="@+id/order_id_title"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Order Id"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/order_statusTitle"
+            android:id="@+id/order_id"
+            android:paddingStart="50dp"
+            android:paddingEnd="1dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_toEndOf="@id/order_id_title"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Payment"
+            android:layout_below="@id/order_id_title"
+            android:layout_marginTop="10dp"
+            android:paddingStart="16dp"
+            android:id="@+id/order_payment_title"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Cash On Delivery"
+            android:id="@+id/order_payment"
+            android:paddingStart="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/order_id"
+            android:paddingEnd="1dp"
+            android:textColor="@color/black"
+            android:layout_toEndOf="@id/order_id_title"
+            android:layout_marginBottom="30dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Expected delivery"
+            android:layout_below="@id/order_payment"
+            android:paddingStart="16dp"
+            android:layout_marginTop="5dp"
+            android:paddingEnd="1dp"
+            android:textColor="@color/black"
+            android:id="@+id/expecteddeliveryTtile"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            />
+        <include layout="@layout/deliveryformat"
+            android:layout_below="@id/expecteddeliveryTtile"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+    </RelativeLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:text="Back to home"
+        android:onClick="backToHomeClick"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

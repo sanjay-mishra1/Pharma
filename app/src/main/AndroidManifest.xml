@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.pharma">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".test.MedicineReminderActivity"></activity>
+        <activity android:name=".test.LabSelectorActivity" />
+        <activity android:name=".orders.OrderDetailActivity" />
+        <activity android:name=".orders.MyOrdersActivity" />
+        <activity android:name=".PaymentMethodActivity" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <activity
+            android:name=".address.SelectAddressFromMapActivity"
+            android:label="@string/title_activity_select_address_from_map" /> <!-- <activity android:name=".MedicineDetailsActivity" /> -->
+        <activity android:name=".ListActivityForImage" />
+        <activity
+            android:name=".view_image_layout"
+            android:theme="@style/AppThemeBlack" />
+        <activity android:name=".medicine.AllMedicinesActivity" /> <!-- <activity -->
+        <!-- android:name=".orders.prescription.ImageBasedActivity" -->
+        <!-- android:label="@string/title_activity_image_based" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
+        <activity
+            android:name=".CartActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".authentication.LoginMobileActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".authentication.SignupActivity" />
+        <activity android:name=".authentication.GoogleAuthentication" />
+        <activity android:name=".authentication.FacebookAuthentication" />
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" /> <!-- Facebook Integration Data -->
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".authentication.LoginEmailActivity" />
+        <activity
+            android:name=".SplashActivity"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+        </activity>
+        <activity
+            android:name=".medicine.CustomMedicineListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".medicine.SearchActivity" />
+        <activity android:name=".WebArticleActivity" />
+        <activity android:name=".orders.ImageDataDetailActivity" />
+        <activity android:name=".orders.prescription.PrescriptionActivity" />
+        <activity
+            android:name=".chat.ChatActivity"
+            android:theme="@style/AppThemeForChat" />
+        <activity android:name=".orders.OrderStatusActivity" />
+        <activity android:name=".chat.GallerySample" />
+        <activity android:name=".chat.help_activity" />
+        <activity android:name=".chat.image_zoomer" />
+        <activity android:name=".chat.Message_Image" />
+        <activity android:name=".chat.imageViewer" />
+        <activity android:name=".medicine_info.MedicineDetailsActivity" />
+        <activity android:name=".medicine.ShowMedicinesActivity" />
+        <activity android:name=".medicine.AllMedicineSortingActivity" />
+        <activity android:name=".test.TestActivity" />
+        <activity android:name=".test.ExtraOptionsActivity" />
+        <activity android:name=".test.WebArticlesHomeActivity" />
+        <activity android:name=".test.ShowTestDetails" />
+        <activity android:name=".MedicineReminderActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" /> <!-- For storing image -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+</manifest>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".authentication.LoginEnterMobileFragment">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:background="#fff">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_launcher_foreground" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <EditText
+            android:id="@+id/editEmail"
+            android:background="@drawable/field_background"
+            android:layout_width="@dimen/field_width"
+            android:layout_height="@dimen/filed_height"
+            android:textSize="@dimen/field_text_size"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="-8dp"
+            android:inputType="textEmailAddress"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:hint="@string/email"
+            />
+        <EditText
+            android:id="@+id/editpassword"
+            android:background="@drawable/field_background"
+            android:layout_width="@dimen/field_width"
+            android:layout_below="@id/editEmail"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
+            android:layout_height="@dimen/filed_height"
+            android:imeOptions="actionGo"
+            android:textSize="@dimen/field_text_size"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="-8dp"
+            android:inputType="textPassword"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:hint="@string/password"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_below="@id/editpassword"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Forgot password?"
+                android:textSize="16sp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Reset"
+                android:id="@+id/resetEmail"
+                android:layout_marginStart="5dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+    <include layout="@layout/signin_bottom"/>
+</LinearLayout>

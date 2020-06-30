@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    >
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:orientation="vertical"
+          android:id="@+id/mobileView"
+          android:layout_centerInParent="true"
+          android:gravity="center"
+          android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_gravity="center"
+            android:layout_height="200dp"
+            android:background="@drawable/ic_launcher_foreground"
+            android:contentDescription="@string/app_icon" />
+
+        <RelativeLayout
+            android:layout_width="355dp"
+            android:background="@drawable/field_background"
+            android:layout_height="@dimen/filed_height">
+
+        <EditText
+            android:id="@+id/editTextPhone"
+            android:layout_width="@dimen/field_width"
+            android:layout_height="@dimen/filed_height"
+            android:layout_gravity="center"
+            android:digits="0123456789"
+            android:textSize="@dimen/field_text_size"
+            android:inputType="phone"
+            android:paddingEnd="25dp"
+            android:hint="@string/enter_your_number"
+            android:maxLength="10"
+            android:background="#fff"
+            android:paddingStart="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="1dp"
+            android:layout_toEndOf="@id/country_code"
+            android:autofillHints="" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/filed_height"
+                android:text="@string/_91"
+                android:id="@+id/country_code"
+                android:visibility="gone"
+                android:gravity="center|end"
+                android:layout_marginStart="20dp"
+                android:textColor="#000"
+                android:textSize="@dimen/field_text_size"/>
+
+        </RelativeLayout>
+              <include layout="@layout/button"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="20dp"
+                  />
+      </LinearLayout>
+        <include layout="@layout/login_mobile_fragment_enter_otp"
+            android:visibility="gone"
+            android:id="@+id/otpView"
+            />
+
+</RelativeLayout>

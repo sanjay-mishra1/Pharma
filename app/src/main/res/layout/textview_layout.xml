@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal"
+    >
+    <RadioButton
+        android:layout_width="30dp"
+        android:checked="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="-6dp"
+        android:text=""
+        android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+        android:shadowColor="@color/colorPrimaryDark"
+        android:buttonTint="@color/colorPrimaryDark"
+        android:layout_height="22dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_marginStart="6dp"
+        android:id="@+id/text"
+        android:textSize="16sp"
+        android:text="Thank your for your message."
+        android:textColor="@color/black"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+

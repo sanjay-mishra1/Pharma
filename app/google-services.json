@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "614759740891",
+    "firebase_url": "https://tablethuts.firebaseio.com",
+    "project_id": "tablethuts",
+    "storage_bucket": "tablethuts.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614759740891:android:b26667cbb306666f71e3fe",
+        "android_client_info": {
+          "package_name": "com.example.pharma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614759740891-22e1hjoqjorep8kvje5he7mast7n05np.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5Rq36vEKQmsaHThrPX69BHHBNIVrKRuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614759740891-22e1hjoqjorep8kvje5he7mast7n05np.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

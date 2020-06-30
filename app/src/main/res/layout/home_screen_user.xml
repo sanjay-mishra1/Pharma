@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:background="@color/top_color"
+
+    android:layout_height="160dp">
+  <ImageButton
+      android:layout_width="60dp"
+      android:layout_height="60dp"
+      android:id="@+id/more"
+      android:layout_marginTop="20dp"
+      android:layout_marginStart="20dp"
+      android:layout_alignParentStart="true"
+      android:contentDescription="@string/more" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_toEndOf="@id/more"
+        android:layout_toStartOf="@id/nameCard"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_height="60dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/location_home"
+        android:text="MQ 294"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="#fff"
+        android:layout_height="wrap_content"/>
+     <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/location_city"
+        android:gravity="center"
+        android:text="Waidhan, MP"
+        android:textSize="16sp"
+        android:textColor="#fff"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+<androidx.cardview.widget.CardView
+    android:layout_width="60dp"
+    android:id="@+id/nameCard"
+    app:cardElevation="10dp"
+    android:layout_marginEnd="20dp"
+    app:cardCornerRadius="10dp"
+    android:layout_marginTop="20dp"
+    android:layout_alignParentEnd="true"
+    android:layout_height="60dp">
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+</androidx.cardview.widget.CardView>
+
+</RelativeLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardElevation="10dp"
+        android:layout_marginTop="-25dp"
+        app:cardCornerRadius="35dp"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="20dp"
+            android:layout_height="wrap_content">
+    <include layout="@layout/searchbar"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="Category"
+        android:textColor="#000"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_height="100dp">
+        <androidx.cardview.widget.CardView
+            android:layout_width="60dp"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="@color/card_background"
+            android:layout_height="60dp">
+            <ImageView
+                android:layout_width="60dp"
+                android:scaleType="centerInside"
+                android:tint="#a2a2a2"
+                android:src="@drawable/ic_search_black_24dp"
+                android:layout_height="60dp"/>
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Medicine"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:orientation="horizontal"
+         android:layout_marginTop="20dp"
+         android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView
+            android:layout_width="330dp"
+            app:cardCornerRadius="24dp"
+
+            app:cardBackgroundColor="@color/colorAccent"
+            android:layout_height="150dp">
+        </androidx.cardview.widget.CardView>
+     </LinearLayout>
+
+
+   <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                android:layout_width="330dp"
+                app:cardCornerRadius="24dp"
+                app:cardBackgroundColor="#EEEDED"
+                android:layout_height="150dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:text="Order quickly with prescription"
+                        android:id="@+id/card_title"
+                        android:layout_marginTop="20dp"
+                        android:textColor="#000"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:text="Upload prescription and tell us what you need\nWe do the rest"
+                        android:id="@+id/card_desc"
+                        android:layout_below="@id/card_title"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Save 20%"
+                        android:id="@+id/card_extra"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:layout_below="@id/card_desc"
+                        android:layout_marginTop="20dp"
+                        android:layout_height="wrap_content"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/actionButton"
+                        android:layout_width="120dp"
+                        android:textSize="16sp"
+                        android:layout_height="50dp"
+                        app:cornerRadius="20dp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:gravity="center"
+                        android:text="Upload"
+                        android:layout_alignParentEnd="true"
+                        android:layout_below="@id/card_desc"
+                        android:textAllCaps="false"
+                        android:textColor="#ffffff" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

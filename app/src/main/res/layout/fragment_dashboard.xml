@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="#F2F3F8"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="wrap_content">
+         <ImageButton
+         android:layout_width="60dp"
+         android:layout_height="60dp"
+         android:scaleType="centerCrop"
+         android:padding="15dp"
+         android:id="@+id/notification"
+         android:layout_alignParentStart="true"
+         android:background="?selectableItemBackgroundBorderless"
+         android:src="@drawable/ic_notifications_white_24dp"
+         android:contentDescription="@string/title_notifications" />
+        <fragment
+            android:layout_width="match_parent"
+            tools:layout="@layout/fragment_display_address"
+            android:layout_toStartOf="@id/card_top"
+            android:layout_marginTop="10dp"
+            android:tag="home_address"
+            android:name="com.example.pharma.address.DisplayAddressFragment"
+            android:layout_toEndOf="@id/notification"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fadingEdge="vertical"
+            android:layout_marginTop="2dp"
+            android:text="@string/med"
+            android:visibility="gone"
+            app:fontFamily="@font/frenchscript"
+            android:textColor="#fff"
+            android:layout_toEndOf="@id/notification"
+            android:textSize="40sp"
+            />
+
+        <TextView
+            android:id="@+id/logo_part2"
+            android:layout_toEndOf="@id/logo"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_height="wrap_content"
+            android:fadingEdge="vertical"
+            android:visibility="gone"
+            android:text="@string/care"
+            android:textColor="#FF0070"
+            app:fontFamily="@font/frenchscript"
+            android:textSize="40sp"
+             />
+
+        <include layout="@layout/cart_icon_layout"
+            android:layout_alignParentEnd="true"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/card_top"
+            android:layout_marginTop="4dp"
+            android:layout_width="50dp" />
+
+        <include layout="@layout/searchbar"
+            android:layout_below="@id/notification"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"/>
+    </RelativeLayout>
+<!--   Contains a frame view for top ads -->
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-70dp">
+    </FrameLayout>
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_margin="15dp"
+        android:padding="20dp"
+        android:id="@+id/uploadPrescriptionBt"
+        android:layout_marginTop="10dp"
+        app:cornerRadius="8dp"
+        android:textSize="17sp"
+        app:icon="@drawable/ic_camera_white_24dp"
+        app:iconGravity="textStart"
+        android:textAllCaps="false"
+        android:text="@string/upload_your_prescription"
+        android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#fff"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:id="@+id/open_medicine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_medicine"
+                    android:contentDescription="@string/medicines" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/medicines"
+                    android:textColor="#000"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/open_orders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-5dp"
+                    android:contentDescription="@string/orders"
+                    android:src="@drawable/ic_order" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center"
+                    android:text="@string/orders"
+                    android:textColor="#000"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/open_reminders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/reminders"
+
+                    android:padding="12dp"
+                    android:src="@drawable/ic_reminder" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/reminders"
+                    android:textColor="#000"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/open_chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/chat"
+                    android:padding="12dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_chat" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/chat"
+                    android:textColor="#000"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/open_test_reports"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/test_report"
+                    android:padding="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_report" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/test_report"
+                    android:textColor="#000"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/open_favorites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/favorites"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_bookmark" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/favorites"
+                    android:textColor="#000"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/open_articale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackgroundBorderless"
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/wallet"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_domain" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="Articles"
+                    android:textColor="#000"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/open_prescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/prescription"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_prescription" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/prescription"
+                    android:textColor="#000"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            app:shimmer_auto_start="true"
+            app:shimmer_duration="800">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/data_placeholder_layout" />
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="#fff"
+            android:layout_marginTop="15dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Top Categories"
+                android:textColor="#000"
+                android:paddingStart="30dp"
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                android:paddingEnd="5dp"
+                android:layout_height="wrap_content"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/category_recycler"
+                android:paddingStart="35dp"
+                android:paddingEnd="1dp"
+                android:layout_marginBottom="10dp"
+                android:clipToPadding="false"
+                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:id="@+id/recycler_category"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:paddingStart="20dp"-->
+<!--            android:paddingEnd="5dp"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+     <androidx.recyclerview.widget.RecyclerView
+         android:layout_width="match_parent"
+         android:id="@+id/recycle"
+         android:paddingEnd="5dp"
+         android:paddingStart="1dp"
+         android:layout_marginBottom="60dp"
+         android:layout_height="wrap_content"/>
+      <include layout="@layout/layout_bottom_part"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/appbar"
+    android:background="@color/colorPrimaryDark"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginBottom="15dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/editSearch"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="15dp"
+            android:tag="@string/search_medicine"
+            android:imeOptions="actionSearch"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/search_bar"
+            android:drawableStart="@drawable/ic_search_gray_24dp"
+            android:drawablePadding="15dp"
+            android:hint="@string/search_medicine"
+            android:inputType="textCapWords"
+            android:paddingStart="15dp"
+            android:elevation="10dp"
+            android:paddingEnd="5dp"
+            android:textColorHint="#B0B0B0"
+            android:importantForAutofill="no" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="62dp"
+            app:cardCornerRadius="10dp"
+            android:visibility="gone"
+            android:id="@+id/search_result_card"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:cardBackgroundColor="#FFF"
+            app:cardElevation="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/recycle"
+                android:padding="10dp"
+                android:background="#fff"
+                android:layout_marginTop="10dp"
+                android:clipToPadding="false"
+                android:layout_height="wrap_content"/>
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/search_progressbar"
+                android:layout_height="wrap_content"/>
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+</RelativeLayout>

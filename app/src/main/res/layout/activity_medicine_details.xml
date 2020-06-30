@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:id="@+id/toolbar"
+        android:visibility="gone"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/AppTheme.AppBarOverlay"
+
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/Relative1"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="10dp"
+        android:layout_height="350dp">
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:id="@+id/frame"
+            android:background="@color/colorPrimary"
+            android:foregroundGravity="center"
+            android:paddingEnd="24dp"
+            android:clipToPadding="false"
+            android:paddingStart="34dp"
+            app:layout_anchorGravity="center"/>
+        <ImageButton
+            android:id="@+id/seeImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:onClick="seeImages"
+            android:layout_alignParentEnd="true"
+            android:scaleType="centerCrop"
+            android:layout_alignParentBottom="true"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_view_image_black_24dp" />
+    </RelativeLayout>
+<include layout="@layout/medicine_detail_bottomsheet"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

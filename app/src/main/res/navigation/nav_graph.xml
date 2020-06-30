@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/HomePrescription">
+
+    <fragment
+        android:id="@+id/HomePrescription"
+        android:name="com.example.pharma.orders.prescription.HomePrescription"
+        android:label="@string/prescription"
+        tools:layout="@layout/layout_for_pres_and_test">
+
+        <action
+            android:id="@+id/action_HomePrescription_to_cameraPrescription"
+            app:destination="@id/cameraPrescription" />
+        <action
+            android:id="@+id/action_HomePrescription_to_galleryPrescription"
+            app:destination="@id/galleryPrescription" />
+        <action
+            android:id="@+id/action_HomePrescription_to_myPrescription"
+            app:destination="@id/myPrescription" />
+    </fragment>
+    <fragment
+        android:id="@+id/cameraPrescription"
+        android:name="com.example.pharma.orders.prescription.ChoosePrescriptionFromCamera"
+        android:label="@string/camera"
+        tools:layout="@layout/upload_prescription_screen">
+    </fragment>
+
+    <fragment
+        android:id="@+id/galleryPrescription"
+        android:name="com.example.pharma.orders.prescription.ChoosePrescriptionFromGallery"
+        android:label="@string/gallery"
+        tools:layout="@layout/upload_prescription_screen"/>
+    <fragment
+        android:id="@+id/myPrescription"
+        android:name="com.example.pharma.orders.prescription.LoadMyDataFragment"
+        android:label="@string/gallery"
+        tools:layout="@layout/simple_recyclerview_homepage"/>
+</navigation>

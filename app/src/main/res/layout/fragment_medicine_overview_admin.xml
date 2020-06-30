@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/layout_background"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/frameOverview"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:id="@+id/fullscreen"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="10dp"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_fullscreen_black_24dp"
+                    android:layout_height="30dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:id="@+id/medicineName"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+
+                    android:text="Name"
+                    android:layout_below="@id/frameOverview"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/medicineTypes"
+                    android:text="By Dabur"
+                    android:visibility="gone"
+                    android:layout_alignBaseline="@id/medicineName"
+                    android:background="@drawable/rounded_rectangle_orange"
+                    android:layout_alignParentEnd="true"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="15dp"
+                    android:drawablePadding="10dp"
+                    android:paddingTop="5dp"
+                    android:drawableStart="@drawable/ic_medicine"
+                    android:gravity="center"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_below="@id/frameOverview"
+                    android:layout_height="wrap_content"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/companyName"
+                    android:text="By Dabur"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+
+                    android:layout_below="@id/medicineName"
+                    android:layout_height="wrap_content"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/companyName"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Original"
+
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/medicineOriginalPrice"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/priceDiscount"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="10dp"
+                        android:text="Discount"
+                        android:textColor="@color/red"
+                        android:layout_toEndOf="@id/medicineOriginalPrice"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/medicinePrice"
+                        android:layout_marginTop="10dp"
+
+                        android:text="Price"
+                        android:textSize="18sp"
+                        android:textColor="@color/black"
+                        android:layout_below="@id/priceDiscount"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/medicineType"
+                        android:text="By Dabur"
+                        android:layout_alignBaseline="@id/medicinePrice"
+                        android:background="@drawable/rounded_rectangle_orange"
+                        android:layout_alignParentEnd="true"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="15dp"
+                        android:drawablePadding="10dp"
+                        android:paddingTop="5dp"
+                        android:drawableStart="@drawable/ic_medicine"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/white"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/variantField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:text="Variants"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+            <include layout="@layout/variants_list_buttons"
+                android:layout_width="match_parent"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/variantsList"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="16dp"
+                android:visibility="gone"
+                android:paddingEnd="16dp"
+                android:clipToPadding="false"
+                android:layout_marginTop="40dp"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/diseaseField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+
+                android:layout_marginBottom="50dp"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/disease"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_marginTop="40dp"
+                android:paddingStart="16dp"
+                android:layout_marginBottom="10dp"
+                android:paddingEnd="16dp"
+                android:textSize="16sp"
+                android:id="@+id/disease"
+                android:text="@string/no_diseases_included"
+                android:textColor="@color/black"
+
+
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/prescriptionField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="50dp"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/prescription"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_marginTop="40dp"
+                android:paddingStart="16dp"
+                android:layout_marginBottom="10dp"
+                android:paddingEnd="16dp"
+                android:textSize="16sp"
+                android:id="@+id/prescriptionNeeded"
+                android:textColor="@color/black"
+
+
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:foregroundGravity="center"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                style="?buttonBarButtonStyle"
+                android:layout_height="wrap_content">
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="180dp"
+                    android:id="@+id/addToDisable"
+                    android:text="disable_medicine"
+                    android:layout_height="wrap_content"/>
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="180dp"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/deleteMedicine"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:text="delete_medicine"
+                    app:strokeColor="@color/red"
+                    app:rippleColor="@color/red"
+                    android:textColor="@color/red"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

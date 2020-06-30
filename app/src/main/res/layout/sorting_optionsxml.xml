@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:text="@string/sort_by"
+        android:textAllCaps="true"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:layout_marginStart="19dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/relevance"
+        android:padding="10dp"
+        android:paddingStart="25dp"
+        android:paddingEnd="20dp"
+        android:drawableStart="@drawable/ic_filter"
+        android:text="@string/relevance"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:background="?selectableItemBackground"
+        android:drawablePadding="25dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/medicineName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:drawableStart="@drawable/ic_sort_by_alphabet"
+        android:drawablePadding="25dp"
+        android:padding="10dp"
+        android:paddingStart="25dp"
+        android:paddingEnd="20dp"
+        android:text="@string/medicine_name"
+        android:textColor="#000"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/price_low_high"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:drawableStart="@drawable/ic_sort_price_incresing"
+        android:drawablePadding="25dp"
+        android:padding="10dp"
+        android:paddingStart="25dp"
+        android:paddingEnd="20dp"
+        android:text="@string/price_low_to_high"
+        android:textColor="#000"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/price_high_low"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:drawableStart="@drawable/ic_sort_price_descreasing"
+        android:drawablePadding="25dp"
+        android:padding="10dp"
+        android:paddingStart="25dp"
+        android:paddingEnd="20dp"
+        android:text="@string/price_high_to_low"
+        android:textColor="#000"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/discount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:drawableStart="@drawable/ic_discount"
+        android:drawablePadding="25dp"
+        android:padding="10dp"
+        android:paddingStart="25dp"
+        android:paddingEnd="20dp"
+        android:text="@string/discount"
+        android:textColor="#000"
+        android:textSize="18sp" />
+</LinearLayout>

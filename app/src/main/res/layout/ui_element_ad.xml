@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    >
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:id="@+id/viewPager"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:foregroundGravity="center"
+        android:paddingEnd="24dp"
+        android:paddingStart="34dp"
+        app:layout_anchorGravity="center"
+        android:layout_height="150dp"/>
+    <include layout="@layout/ui_element_ad_imageview"
+        android:id="@+id/imageCard"
+        android:visibility="gone"
+        />
+</RelativeLayout>
