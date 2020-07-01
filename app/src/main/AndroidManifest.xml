@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.pharma">
 
     <application
@@ -10,30 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".test.MedicineReminderActivity"></activity>
+
         <activity android:name=".test.LabSelectorActivity" />
         <activity android:name=".orders.OrderDetailActivity" />
         <activity android:name=".orders.MyOrdersActivity" />
         <activity android:name=".PaymentMethodActivity" />
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
+
         <activity
             android:name=".address.SelectAddressFromMapActivity"
-            android:label="@string/title_activity_select_address_from_map" /> <!-- <activity android:name=".MedicineDetailsActivity" /> -->
+            android:label="@string/title_activity_select_address_from_map" />
         <activity android:name=".ListActivityForImage" />
         <activity
             android:name=".view_image_layout"
             android:theme="@style/AppThemeBlack" />
         <activity android:name=".medicine.AllMedicinesActivity" /> <!-- <activity -->
-        <!-- android:name=".orders.prescription.ImageBasedActivity" -->
-        <!-- android:label="@string/title_activity_image_based" -->
-        <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
+
         <activity
             android:name=".CartActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -100,14 +92,15 @@
         <activity android:name=".test.ExtraOptionsActivity" />
         <activity android:name=".test.WebArticlesHomeActivity" />
         <activity android:name=".test.ShowTestDetails" />
-        <activity android:name=".MedicineReminderActivity" />
+        <activity android:name=".reminder.MedicineReminderActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" /> <!-- For storing image -->
+            android:value="@string/facebook_app_id" />
+        <!-- For storing image -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

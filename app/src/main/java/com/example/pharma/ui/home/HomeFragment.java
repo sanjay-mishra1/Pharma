@@ -20,6 +20,7 @@ import com.example.pharma.orders.MyOrdersActivity;
 import com.example.pharma.orders.prescription.PrescriptionActivity;
 import com.example.pharma.recycler.CategoryRecycler;
 import com.example.pharma.recycler.HomePageRecycler;
+import com.example.pharma.reminder.MedicineReminderActivity;
 import com.example.pharma.test.TestActivity;
 import com.example.pharma.test.WebArticlesHomeActivity;
 import com.facebook.shimmer.ShimmerFrameLayout;
@@ -106,6 +107,7 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getActivity(), MyOrdersActivity.class));
         });
         root.findViewById(R.id.open_reminders).setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), MedicineReminderActivity.class));
         });
         root.findViewById(R.id.open_chat).setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), help_activity.class));

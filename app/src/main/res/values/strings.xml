@@ -170,5 +170,7 @@
     <string name="test_pref_name">RECENT_TEST</string>
     <string name="upload_the_prescription">Upload the prescription</string>
     <string name="enter_address">Enter Address</string>
+    <string name="edit">Edit</string>
+    <string name="add_reminder">Add Reminder</string>
 
 </resources>

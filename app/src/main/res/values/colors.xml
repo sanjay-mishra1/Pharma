@@ -165,4 +165,6 @@
     <color name="navy">#000080</color>
     <color name="black">#000000</color>
     <color name="filter_background_color">#F2F3F7</color>
+<!--    Reminder color resource-->
+    <color name="reminder_success">@color/lime_green</color>
 </resources>
