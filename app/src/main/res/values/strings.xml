@@ -172,5 +172,9 @@
     <string name="enter_address">Enter Address</string>
     <string name="edit">Edit</string>
     <string name="add_reminder">Add Reminder</string>
+    <string name="add_a_reminder">Add New Reminder</string>
+    <string name="reminder_pref_name">Reminder_Preference</string>
+    <string name="reminder_pref_name_for_time_slot">slots</string>
+    <string name="optional">Optional</string>
 
 </resources>

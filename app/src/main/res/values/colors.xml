@@ -167,4 +167,5 @@
     <color name="filter_background_color">#F2F3F7</color>
 <!--    Reminder color resource-->
     <color name="reminder_success">@color/lime_green</color>
+    <color name="error_box_background_color">#FEF4F3</color>
 </resources>

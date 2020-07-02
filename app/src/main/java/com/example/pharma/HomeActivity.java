@@ -1,6 +1,5 @@
 package com.example.pharma;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -10,6 +9,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import cat.ereza.customactivityoncrash.config.CaocConfig;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -29,6 +29,14 @@ public class HomeActivity extends AppCompatActivity {
 //        SharedPreferences.Editor editor=preferences.edit();
 //        editor.clear();
 //        editor.apply();
-
+        CaocConfig.Builder.create()
+                .backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT)
+                .showErrorDetails(false)
+                .showRestartButton(true)
+                .logErrorOnRestart(true)
+                .trackActivities(true)
+                .minTimeBetweenCrashesMs(3000)
+                .restartActivity(HomeActivity.class)
+                ;
     }
 }

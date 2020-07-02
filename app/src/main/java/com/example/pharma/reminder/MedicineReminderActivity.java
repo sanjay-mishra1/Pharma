@@ -1,19 +1,31 @@
 package com.example.pharma.reminder;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 
 import com.example.pharma.R;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.Set;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
-import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 
 public class MedicineReminderActivity extends AppCompatActivity {
+    private StringBuilder dayValue=new StringBuilder();
+    private HorizontalCalendar horizontalCalendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,23 +40,75 @@ public class MedicineReminderActivity extends AppCompatActivity {
         endDate.add(Calendar.MONTH, 1);
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -1);
-        HorizontalCalendar horizontalCalendar;
+
         horizontalCalendar = new HorizontalCalendar.Builder(this, R.id.calendarView)
                 .range(startDate, endDate)
-                .datesNumberOnScreen(5)
+                .datesNumberOnScreen(7)
+                .configure().showTopText(true).showBottomText(false)
+                .formatTopText("E").
+                        end()
                 .build();
-        horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
-            @Override
-            public void onDateSelected(Calendar date, int position) {
-                //do something
-                Log.e("CalenderView","->"+date.toString());
-            }
-        });
+        //HorizontalCalendarConfig config=new HorizontalCalendarConfig().setFormatTopText("E");
+
+
+        fetchPreference();
+    }
+    void fetchPreference(){
+        //createTestPref();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.UK);
+        String date = dateFormat.format(new Date());
+        //dayValue=dayValue.append( convertDateTOMillis( date + " 00:00:00"));
+        HashMap<String,String>map= (HashMap<String, String>)
+                getSharedPreferences(getString(R.string.reminder_pref_name),MODE_PRIVATE).getAll();
+        String []slots= Objects.requireNonNull(map.get(getString(R.string.reminder_pref_name_for_time_slot))).split("->");
+        map.remove(getString(R.string.reminder_pref_name_for_time_slot));
+        RecyclerView recyclerView=findViewById(R.id.reminder_recycle);
+        LinearLayoutManager manager=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(manager);
+        ReminderAdapter adapter=new ReminderAdapter(this,slots,map,dayValue,horizontalCalendar);
+        recyclerView.setAdapter(adapter);
     }
 
+
+    private void createTestPref() {
+        SharedPreferences sharedPreferences=getSharedPreferences(getString(R.string.reminder_pref_name),MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString(getString(R.string.reminder_pref_name_for_time_slot)
+                ,"Morning-8:00 AM->Afternoon-12:00 PM->Night-8:00 PM");
+        editor.putString("Paracetamol","8:00 AM->12:00 PM");
+        editor.putString("B12 Capsule","8:00 AM");
+        editor.putString("Simpo Sodium Chloride","8:00 AM");
+        editor.putString("Blood Pressure Checkup","8:00 AM");
+        editor.apply();
+        String slot="1593628200000";
+        dayValue.append(slot);
+        SharedPreferences sh=getSharedPreferences("reminder_"+slot,MODE_PRIVATE);
+        SharedPreferences.Editor ed=sh.edit();
+        Set<String> allSlot=new HashSet<>();
+        allSlot.add("8:00 AM->s");
+        allSlot.add("12:00 PM->f");
+        ed.putStringSet("Paracetamol",allSlot);
+        Set<String> allSlot2=new HashSet<>();
+        allSlot2.add("8:00 AM->s");
+        ed.putStringSet("Blood Pressure Checkup",allSlot2);
+        ed.apply();
+    }
+
+    long convertDateTOMillis(String date){
+        try {
+            return (new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH).parse(date).getTime());
+        } catch (ParseException e) {
+            return -1;
+        }
+    }
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    public void addNewReminder(View view) {
+        BottomSheetDialogFragment fragment=new AddNewReminderFragment();
+        fragment.showNow(getSupportFragmentManager(),"");
     }
 }
