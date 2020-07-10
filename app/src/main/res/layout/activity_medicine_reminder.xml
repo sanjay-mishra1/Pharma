@@ -16,12 +16,7 @@
             android:id="@+id/toolbar"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="Medicine Reminder"
-            android:gravity="end"
             android:layout_height="wrap_content">
-            <RelativeLayout
-                android:layout_width="30dp"
-                android:gravity="end"
-                android:layout_height="30dp">
             <ImageButton
                 android:layout_width="30dp"
                 android:layout_alignParentEnd="true"
@@ -30,25 +25,28 @@
                 android:onClick="addNewReminder"
                 android:background="?selectableItemBackgroundBorderless"
                 android:layout_height="30dp"/>
-            </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/white"
         android:paddingTop="10dp"
+        android:visibility="gone"
         android:layout_height="wrap_content">
         <ImageButton
             android:layout_width="30dp"
             android:background="?selectableItemBackgroundBorderless"
             android:id="@+id/backArrow"
             android:layout_marginStart="16dp"
+            android:tint="@color/black"
             android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
             android:layout_height="30dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:text="Month Name"
             android:textColor="@color/black"
+            android:textAllCaps="true"
             android:textSize="18sp"
             android:id="@+id/monthName"
             android:layout_centerHorizontal="true"
@@ -56,79 +54,24 @@
             android:layout_height="wrap_content"/>
         <ImageButton
             android:layout_width="30dp"
+            android:tint="@color/black"
             android:id="@+id/nextArrow"
             android:background="?selectableItemBackgroundBorderless"
             android:layout_marginEnd="16dp"
             android:layout_alignParentEnd="true"
             android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
             android:layout_height="30dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:id="@+id/weekName"
-            android:layout_marginStart="18dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/monthName"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="0dp"
-                android:text="S"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="0dp"
-                android:text="S"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="0dp"
-                android:text="M"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="0dp"
-                android:text="T"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="0dp"
-                android:text="W"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="0dp"
-                android:text="T"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="0dp"
-                android:text="F"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="S"
-                android:textSize="14sp"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
     <devs.mulham.horizontalcalendar.HorizontalCalendarView
         android:id="@+id/calendarView"
-        android:layout_below="@id/weekName"
+        android:layout_below="@id/monthName"
         app:colorBottomTextSelected="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:fastScrollEnabled="false"
         app:sizeMiddleText="14sp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         app:selectedDateBackground="@drawable/circular_blue"
         app:selectorColor="#fff"
         app:colorBottomText="#CBC2BD"
@@ -137,6 +80,13 @@
          />
 
     </RelativeLayout>
+    <fragment
+        android:layout_width="match_parent"
+        android:tag="home"
+        tools:targetApi="M"
+        android:name="com.example.pharma.reminder.HorizontalCalendarFragment"
+        tools:layout="@layout/activity_single_row_calendar"
+        android:layout_height="wrap_content"/>
 <!--    app:textSizeDayName="@dimen/dim_20dp"
         app:textSizeDayNumber="@dimen/dim_20dp"-->
     <androidx.recyclerview.widget.RecyclerView

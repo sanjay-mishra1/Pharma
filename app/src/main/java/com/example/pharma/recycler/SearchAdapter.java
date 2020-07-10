@@ -4,16 +4,19 @@ import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.pharma.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
+    private TextView listenerText;
     private  ArrayList<HashMap<String, Object>> medData;
     private Context context;
     private String from;
@@ -27,7 +30,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
         this.medData=medData;
         this.from=from;
     }
-
+    public SearchAdapter(Context context, ArrayList<HashMap<String, Object>> medData, String from, TextView listenerText) {
+        this.context=context;
+        this.medData=medData;
+        this.from=from;
+        this.listenerText=listenerText;
+    }
     @NonNull
     @Override
     public SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,29 +46,16 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
     public void onBindViewHolder(@NonNull SearchViewHolder holder, int position) {
         HashMap<String,Object> map=medData.get(position);
         Log.e("SearchAdapter","MedData "+medData.toString());
-//        holder.setName((String) map.get("medicine_name"));
-//        String weight= (String) map.get("medicine_weight");
-//        if (!weight.isEmpty())
-//        holder.setWeight((String) map.get("medicine_weight"));
-//        holder.setImg((String) map.get("medicine_img"));
-//
 
         //new
         if (from==null) {
-            if (map.get("medicine_name") == null) {
-                String name = (String) map.get("medicine_key");
-                map.put("medicine_id", name);
-                if (name != null)
-                    holder.setName(name);
-                holder.setWeight("In company");
-            } else {
-                holder.setName((String) map.get("medicine_name"));
-                String companyName = (String) map.get("medicine_company");
-                if (companyName != null && !companyName.isEmpty())
-                    holder.setWeight("By " + companyName);
-            }
+            setMedData(holder,map);
             holder.openMedicineInfo((String) map.get("medicine_id"), (String) map.get("medicine_name"));
-        }else if (from.contains("test")){
+        }else if (from.contains("return")){
+            setMedData(holder,map);
+            holder.itemView.setOnClickListener(v -> listenerText.setText(String.format(Locale.UK,"%s %s", context.getString(R.string.search_prefix), map.get("medicine_name"))));
+        }
+        else if (from.contains("test")){
             if (map.get("main")==null){
                 holder.setWeight("In Test Category");
                 holder.openAllTestInCategory((String) map.get("id"),(String) map.get("name"));
@@ -83,6 +78,21 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
             holder.setName((String) map.get("name"));
         }
         holder.setImg((String) map.get("medicine_img"));
+    }
+
+    private void setMedData(SearchViewHolder holder, HashMap<String, Object> map) {
+        if (map.get("medicine_name") == null) {
+            String name = (String) map.get("medicine_key");
+            map.put("medicine_id", name);
+            if (name != null)
+                holder.setName(name);
+            holder.setWeight("In company");
+        } else {
+            holder.setName((String) map.get("medicine_name"));
+            String companyName = (String) map.get("medicine_company");
+            if (companyName != null && !companyName.isEmpty())
+                holder.setWeight("By " + companyName);
+        }
     }
 
     @Override

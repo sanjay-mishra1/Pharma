@@ -42,6 +42,11 @@ public class SearchFragment extends Fragment {
     private long delay=1000;
     private long last_text_edit=0;
     private Runnable input_finish_checker;
+
+    public SearchFragment(){
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -168,9 +173,9 @@ public class SearchFragment extends Fragment {
     }
 
     private void loadSearching(EditText searchEdit,String from) {
-
         medData=new ArrayList<>();
         adapter=new SearchAdapter(getContext(),medData,from);
+
         RecyclerView recyclerView= getView().findViewById(R.id.recycle);
         LinearLayoutManager mLayoutManager =
                 new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -193,6 +198,7 @@ public class SearchFragment extends Fragment {
                     searchKey=s.toString().trim();
                     last_text_edit=System.currentTimeMillis();
                     handler.postDelayed(input_finish_checker,delay);
+
                 }else{
                     searchResultCard.setVisibility(View.GONE);
                     medData.clear();

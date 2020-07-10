@@ -24,7 +24,6 @@
         <TextView
             android:layout_width="match_parent"
             android:id="@+id/medicineName"
-            android:text="Name oisoflsjf ljljieurwdd dddd uo nvlsljfs pwipri oworwoeur uowuoru lnvxl99843b ijslfj uoworuowur uowuoru ooworwuer"
             android:textSize="16sp"
             android:ellipsize="end"
             android:maxLines="3"

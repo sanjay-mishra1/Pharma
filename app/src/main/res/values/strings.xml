@@ -176,5 +176,12 @@
     <string name="reminder_pref_name">Reminder_Preference</string>
     <string name="reminder_pref_name_for_time_slot">slots</string>
     <string name="optional">Optional</string>
+    <string name="add_medicine">Add Medicine</string>
+    <string name="snooze">Snooze</string>
+    <string name="confirm">Confirm</string>
+    <string name="search_prefix">Adding to</string>
+    <string name="confirm_med_reminder">Please confirm the medicine name and reminder time.</string>
+    <string name="delete">Delete</string>
+    <string name="delete_medicine">Delete medicine</string>
 
 </resources>

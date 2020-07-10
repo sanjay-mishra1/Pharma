@@ -1,6 +1,7 @@
 package com.example.pharma;
 
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -12,20 +13,20 @@ public class Constants {
     public static String MOBILE;
     public static String Name="";
 
-    public static String getMonthName(int weekNumber) {
-        switch (weekNumber){
-            case 1:return "Jan";
-            case 2:return "Feb";
-            case 3:return "Mar";
-            case 4:return "Apr";
+    public static String getMonthName(int monthNumber, boolean isFullName) {
+        switch (monthNumber){
+            case 1:if (isFullName)return"January"; else return "Jan";
+            case 2:if (isFullName) return "February";else return "Feb";
+            case 3:if (isFullName)return"March";else return "Mar";
+            case 4:if (isFullName)return"April";else return "Apr";
             case 5:return "May";
-            case 6:return "Jun";
-            case 7:return "Jul";
-            case 8:return "Aug";
-            case 9:return "Sep";
-            case 10:return "Oct";
-            case 11:return "Nov";
-            case 12:return "Dec";
+            case 6:if (isFullName)return"June";else return "Jun";
+            case 7:if (isFullName)return "July";else return "Jul";
+            case 8:if (isFullName)return"August";else return "Aug";
+            case 9:if (isFullName)return"September";else return "Sep";
+            case 10:if (isFullName)return"October";else return "Oct";
+            case 11:if (isFullName)return"November";else return "Nov";
+            case 12:if (isFullName)return"December";else return "Dec";
         }
         return "";
     }
@@ -42,6 +43,14 @@ public class Constants {
         }
         return "";
     }
+    public static long convertDateTOMillis(String date){
+        try {
+            return (new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH).parse(date).getTime());
+        } catch (ParseException e) {
+            return -1;
+        }
+    }
+
   public    static String getFormatedAmount(long amount){
         return "₹ "+ NumberFormat.getNumberInstance(Locale.UK).format(amount);
     }

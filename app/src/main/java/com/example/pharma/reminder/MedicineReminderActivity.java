@@ -3,11 +3,12 @@ package com.example.pharma.reminder;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
+import com.example.pharma.Constants;
 import com.example.pharma.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -24,8 +25,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
 
 public class MedicineReminderActivity extends AppCompatActivity {
-    private StringBuilder dayValue=new StringBuilder();
+    public static StringBuilder dayValue=new StringBuilder();
     private HorizontalCalendar horizontalCalendar;
+    private TextView monthName;
+   static public ReminderAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +39,17 @@ public class MedicineReminderActivity extends AppCompatActivity {
         setTitle("Medicine Reminder");
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
+        monthName=findViewById(R.id.monthName);
         Calendar endDate = Calendar.getInstance();
         endDate.add(Calendar.MONTH, 1);
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -1);
-
+        monthName.setText(Constants.getFormattedTime(System.currentTimeMillis(),"MMMM"));
         horizontalCalendar = new HorizontalCalendar.Builder(this, R.id.calendarView)
                 .range(startDate, endDate)
                 .datesNumberOnScreen(7)
                 .configure().showTopText(true).showBottomText(false)
-                .formatTopText("E").
+                .formatTopText("EEEEE").
                         end()
                 .build();
         //HorizontalCalendarConfig config=new HorizontalCalendarConfig().setFormatTopText("E");
@@ -53,11 +57,11 @@ public class MedicineReminderActivity extends AppCompatActivity {
 
         fetchPreference();
     }
-    void fetchPreference(){
-        //createTestPref();
+    void  fetchPreference(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.UK);
         String date = dateFormat.format(new Date());
-        //dayValue=dayValue.append( convertDateTOMillis( date + " 00:00:00"));
+        dayValue=dayValue.append( Constants. convertDateTOMillis( date + " 00:00:00"));
+//        createTestPref();
         HashMap<String,String>map= (HashMap<String, String>)
                 getSharedPreferences(getString(R.string.reminder_pref_name),MODE_PRIVATE).getAll();
         String []slots= Objects.requireNonNull(map.get(getString(R.string.reminder_pref_name_for_time_slot))).split("->");
@@ -65,7 +69,8 @@ public class MedicineReminderActivity extends AppCompatActivity {
         RecyclerView recyclerView=findViewById(R.id.reminder_recycle);
         LinearLayoutManager manager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
-        ReminderAdapter adapter=new ReminderAdapter(this,slots,map,dayValue,horizontalCalendar);
+         adapter=new ReminderAdapter(this,slots,map,dayValue,
+                horizontalCalendar,monthName);
         recyclerView.setAdapter(adapter);
     }
 
@@ -80,8 +85,8 @@ public class MedicineReminderActivity extends AppCompatActivity {
         editor.putString("Simpo Sodium Chloride","8:00 AM");
         editor.putString("Blood Pressure Checkup","8:00 AM");
         editor.apply();
-        String slot="1593628200000";
-        dayValue.append(slot);
+        String slot= String.valueOf(dayValue);
+//        dayValue.append(slot);
         SharedPreferences sh=getSharedPreferences("reminder_"+slot,MODE_PRIVATE);
         SharedPreferences.Editor ed=sh.edit();
         Set<String> allSlot=new HashSet<>();
@@ -94,13 +99,7 @@ public class MedicineReminderActivity extends AppCompatActivity {
         ed.apply();
     }
 
-    long convertDateTOMillis(String date){
-        try {
-            return (new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH).parse(date).getTime());
-        } catch (ParseException e) {
-            return -1;
-        }
-    }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -109,6 +108,6 @@ public class MedicineReminderActivity extends AppCompatActivity {
 
     public void addNewReminder(View view) {
         BottomSheetDialogFragment fragment=new AddNewReminderFragment();
-        fragment.showNow(getSupportFragmentManager(),"");
+        fragment.showNow(getSupportFragmentManager(),"add");
     }
 }

@@ -181,7 +181,7 @@ public class OrderStatusActivity extends AppCompatActivity {
         TextView dayText=findViewById(R.id.date);
         TextView monthAndWeekText=findViewById(R.id.month);
         dayText.setText(String.valueOf(cl.get(Calendar.DAY_OF_MONTH)));
-        monthAndWeekText.setText(String.format(Locale.UK,"%s\n%s",Constants.getMonthName (cl.get(Calendar.MONTH) + 1), getWeekName(cl.get(Calendar.DAY_OF_WEEK))));
+        monthAndWeekText.setText(String.format(Locale.UK,"%s\n%s",Constants.getMonthName (cl.get(Calendar.MONTH) + 1, false), getWeekName(cl.get(Calendar.DAY_OF_WEEK))));
         SharedPreferences preferences=getSharedPreferences("Cart",MODE_PRIVATE);
         SharedPreferences.Editor editor=preferences.edit();
         editor.clear();

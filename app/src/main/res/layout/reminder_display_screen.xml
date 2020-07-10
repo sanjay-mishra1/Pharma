@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="12dp"
+    android:id="@+id/cardview"
+    style="@style/CustomBottomSheetTheme"
+    app:cardBackgroundColor="@color/transparent"
+    app:cardElevation="10dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="10dp"
+        android:layout_marginBottom="-5dp"
+        android:layout_height="match_parent">
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:id="@+id/main_view"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_margin="20dp"
+            android:paddingBottom="20dp"
+            android:background="#fff"
+            android:paddingEnd="16dp"
+            android:paddingStart="1dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/ic_medicine_pills"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_height="100dp"/>
+
+            <TextView
+                android:id="@+id/med_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:visibility="gone" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/time_title"
+                android:text="8:00 AM"
+                android:textSize="16sp"
+                android:textColor="@color/gray"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="It's time to take your medication.\nPlease confirm by clicking the below button"
+                android:textSize="16sp"
+                android:textColor="@color/gray"
+                android:layout_marginTop="20dp"
+                android:id="@+id/desc"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"/>
+            <ListView
+                android:layout_width="wrap_content"
+                android:id="@+id/listview"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                tools:listitem="@layout/textview_layout"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                style="?buttonBarStyle"
+                android:layout_gravity="bottom"
+                android:layout_alignParentBottom="true"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_marginTop="16dp"
+                    android:paddingTop="10dp"
+                    android:layout_weight="1.5"
+                    android:paddingBottom="10dp"
+                    style="?attr/buttonBarButtonStyle"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/snooze"
+                    android:backgroundTint="@color/gray"
+                    android:id="@+id/actionButtonCancel"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1.5"
+                    android:text="@string/confirm"
+                    android:layout_marginTop="16dp"
+                    android:paddingTop="10dp"
+                    style="?attr/buttonBarButtonStyle"
+                    android:paddingBottom="10dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:id="@+id/actionButton"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+</com.google.android.material.card.MaterialCardView>

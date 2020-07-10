@@ -101,7 +101,7 @@ public class HomeFragment extends Fragment {
     private void setListeners(View root) {
         root.findViewById(R.id.open_medicine).setOnClickListener(v -> {
             Intent intent=new Intent(getActivity(), SearchActivity.class);
-            getActivity().startActivity(intent);
+            startActivity(intent);
         });
         root.findViewById(R.id.open_orders).setOnClickListener(v -> {
                 startActivity(new Intent(getActivity(), MyOrdersActivity.class));

@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
@@ -33,7 +32,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.Set;
 
 
 public class SelectSlotFragment extends BottomSheetDialogFragment {
@@ -125,7 +123,7 @@ public class SelectSlotFragment extends BottomSheetDialogFragment {
                   Log.e("Calenderview",">"+calendarView1.getDate());
                   Calendar cl= Calendar.getInstance();
                   cl.setTimeInMillis(time);
-                  monthText.setText(String.format("%s\n%s", Constants.getMonthName(month + 1),
+                  monthText.setText(String.format("%s\n%s", Constants.getMonthName(month + 1, false),
                           Constants.getWeekName(Calendar.DAY_OF_WEEK)));
 
               }else{  tempExpectedText.setText(R.string.no_slots);

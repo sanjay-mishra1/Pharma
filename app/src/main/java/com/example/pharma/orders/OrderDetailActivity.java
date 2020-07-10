@@ -21,7 +21,6 @@ import com.example.pharma.R;
 import com.example.pharma.firebase.FirebaseCustomAuth;
 import com.example.pharma.model.OrderModel;
 import com.example.pharma.recycler.OrderAdapter;
-import com.example.pharma.recycler.OrderViewHolder;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -38,7 +37,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
 
-import static com.example.pharma.Constants.getFormatedAmount;
 import static com.example.pharma.Constants.getFormattedTime;
 import static com.example.pharma.Constants.getWeekName;
 
@@ -178,7 +176,7 @@ public class OrderDetailActivity extends AppCompatActivity {
      if( data.getCurrent_order_status().contains("Complete")){
          cl.setTimeInMillis(data.getOrder_time());
          dayText.setText(String.valueOf(cl.get(Calendar.DAY_OF_MONTH)));
-         monthAndWeekText.setText(String.format(Locale.UK,"%s\n%s",Constants.getMonthName (cl.get(Calendar.MONTH) + 1), getWeekName(cl.get(Calendar.DAY_OF_WEEK))));
+         monthAndWeekText.setText(String.format(Locale.UK,"%s\n%s",Constants.getMonthName (cl.get(Calendar.MONTH) + 1, false), getWeekName(cl.get(Calendar.DAY_OF_WEEK))));
          TextView timeTitle=findViewById(R.id.expecteddelivery);
          timeTitle.setText(R.string.delivery_at);
          TextView timeText=findViewById(R.id.deliveryToday);
@@ -187,7 +185,7 @@ public class OrderDetailActivity extends AppCompatActivity {
      }else{
          cl.setTimeInMillis(data.getOrder_expected_delivery_time());
          dayText.setText(String.valueOf(cl.get(Calendar.DAY_OF_MONTH)));
-         monthAndWeekText.setText(String.format(Locale.UK,"%s\n%s",Constants.getMonthName (cl.get(Calendar.MONTH) + 1), getWeekName(cl.get(Calendar.DAY_OF_WEEK))));
+         monthAndWeekText.setText(String.format(Locale.UK,"%s\n%s",Constants.getMonthName (cl.get(Calendar.MONTH) + 1, false), getWeekName(cl.get(Calendar.DAY_OF_WEEK))));
      }
         findViewById(R.id.progressbar).setVisibility(View.GONE);
         findViewById(R.id.scrollView).setVisibility(View.VISIBLE);
