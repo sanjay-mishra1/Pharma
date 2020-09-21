@@ -183,5 +183,10 @@
     <string name="confirm_med_reminder">Please confirm the medicine name and reminder time.</string>
     <string name="delete">Delete</string>
     <string name="delete_medicine">Delete medicine</string>
+    <string name="check">Check</string>
+    <string name="view_all">View All</string>
+    <string name="call_to_order">Call to Order</string>
+    <string name="my_refills">My Refills</string>
+    <string name="recent_medicine">Recent Medicines</string>
 
 </resources>

@@ -1,56 +1,66 @@
 package com.example.pharma.address;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
-import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pharma.CartActivity;
 import com.example.pharma.Constants;
 import com.example.pharma.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class MyAddressFragment  extends BottomSheetDialogFragment {
 
     private View root;
-
+    private ChildEventListener listener;
+    private DatabaseReference databaseReference;
+    private ArrayList<String> list;
+    private ArrayList<String> coordinate;
+    private ArrayList<String> keyList;
+    private AddressAdapter adapter;
+    private TextView titleText;
+    private TextView parentTextView;
     public MyAddressFragment() {
         // Required empty public constructor
+    }
+
+    MyAddressFragment(TextView textView) {
+        this.parentTextView=textView;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(BottomSheetDialogFragment.STYLE_NORMAL,R.style.CustomBottomSheetTheme);
+        list=new ArrayList<>();
+        keyList=new ArrayList<>();
+        coordinate=new ArrayList<>();
         loadFirebaseForAddress();
 
     }
@@ -61,36 +71,76 @@ public class MyAddressFragment  extends BottomSheetDialogFragment {
         // Inflate the layout for this fragment
          root=inflater.inflate(R.layout.fragment_my_address, container, false);;
         root.findViewById(R.id.addAddress).setOnClickListener(v -> {
-            Intent intent=new Intent(getContext(),SelectAddressFromMapActivity.class);
+            Intent intent=new Intent(getContext(),SelectPinCodeActivity.class);
             startActivity(intent);
         });
+        titleText=root.findViewById(R.id.title);
         return root;
     }
     private void loadFirebaseForAddress() {
-        FirebaseDatabase.getInstance().getReference("Customers/"+ Constants.uid).child("Address").addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference=FirebaseDatabase.getInstance()
+                .getReference("Customers/"+ Constants.uid).child("Address");
+         listener=databaseReference.addChildEventListener(new ChildEventListener() {
+             @Override
+             public void onChildAdded(@NonNull DataSnapshot dataSnapshot1, @Nullable String s) {
+                 Log.e("ValueEvent","Triggered....."+dataSnapshot1.getValue());
+                 if (adapter!=null) {
+                     if (!keyList.contains(dataSnapshot1.getKey())) {
+                         keyList.add(dataSnapshot1.getKey());
+                         list.add((String) dataSnapshot1.child("address_text").getValue());
+                         coordinate.add(dataSnapshot1.child("address_lat").getValue()
+                                 + "," + dataSnapshot1.child("address_lng").getValue());
+                         adapter.notifyDataSetChanged();
+                         titleText.setText(R.string.select_address);
+                     }
+                 }
+             }
+
+             @Override
+             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+             }
+
+             @Override
+             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+             }
+
+             @Override
+             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+             }
+
+             @Override
+             public void onCancelled(@NonNull DatabaseError databaseError) {
+
+             }
+         });
+        databaseReference.addChildEventListener(listener);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 root.findViewById(R.id.progress_field).setVisibility(View.GONE);
                 root.findViewById(R.id.address_field).setVisibility(View.VISIBLE);
                try {
                        RecyclerView listView = root.findViewById(R.id.address_list);
-                       ArrayList<String> list = new ArrayList<>();
-                       ArrayList<String> coordinate = new ArrayList<>();
-                       ArrayList<String> keyList = new ArrayList<>();
+                       list = new ArrayList<>();
+                       coordinate = new ArrayList<>();
+                       keyList = new ArrayList<>();
                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
                        {    keyList.add(dataSnapshot1.getKey());
                            list.add((String) dataSnapshot1.child("address_text").getValue());
                            coordinate.add(dataSnapshot1.child("address_lat").getValue()
                                    +","+dataSnapshot1.child("address_lng").getValue());
                        }
-                       if (list.size() > 0) {
                            LinearLayoutManager mLayoutManager =
                                    new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-                           AddressAdapter adapter=new AddressAdapter(list,coordinate,keyList);
+                           adapter=new AddressAdapter(list,coordinate,keyList);
                            listView.setLayoutManager(mLayoutManager);
                            listView.setAdapter(adapter);
-
-                       }else root.findViewById(R.id.no_address).setVisibility(View.VISIBLE);
+                   if (list.size() <= 0) {
+                       titleText.setText(R.string.no_address_found);
+                   }
 
                }catch (Exception e){e.printStackTrace();}
             }
@@ -101,6 +151,14 @@ public class MyAddressFragment  extends BottomSheetDialogFragment {
             }
         });
     }
+
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
+        Log.e("Dismiss","Removing listener");
+        databaseReference.removeEventListener(listener);
+    }
+
     class AddressAdapter extends RecyclerView.Adapter<AddressViewHolder>{
         List<String> addressTxt;
         List<String> coordTxt;
@@ -126,29 +184,34 @@ public class MyAddressFragment  extends BottomSheetDialogFragment {
             radioButton.setOnClickListener(v -> {
                 SharedPreferences sharedPreferences = getContext().getSharedPreferences("Address", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("Address_Text", addressTxt.get(position));
+                String address=addressTxt.get(position);
+                editor.putString("Address_Text", address);
                 editor.putString("Address_Coordinate", coordTxt.get(position));
                 editor.apply();
                 Objects.requireNonNull(getDialog()).dismiss();
-                CartActivity.detectDismissDialog();
-                getDialog().dismiss();
+               try {
+                   if (parentTextView!=null){
+                       String pincode=address.substring(address.indexOf("Pincode :")).replaceAll("\\D+","").trim();
+                       parentTextView.setText(pincode);
+                   }
+                   CartActivity.detectDismissDialog();
+               }catch (Exception ignored){}
             });
             holder.itemView.findViewById(R.id.delete).setOnClickListener(v -> {
                 ProgressBar progressBar=holder.itemView.findViewById(R.id.progressbar);
                 progressBar.setVisibility(View.VISIBLE);
                 FirebaseDatabase.getInstance().getReference("Customers/"+Constants.uid+"/Address")
-                       .child(keyTxt.get(position)) .setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            coordTxt.remove(position);
-                            addressTxt.remove(position);
-                            keyTxt.remove(position);
-                            notifyDataSetChanged();
-                            progressBar.setVisibility(View.INVISIBLE);
-                        }else Toast.makeText(getContext(),"Failed to delete address",Toast.LENGTH_LONG).show();
-                    }
-                });
+                       .child(keyTxt.get(position)) .setValue(null).addOnCompleteListener(task -> {
+                           if (task.isSuccessful()) {
+                               coordTxt.remove(position);
+                               addressTxt.remove(position);
+                               keyTxt.remove(position);
+                               if (keyTxt.isEmpty())
+                                   titleText.setText(R.string.no_address_found);
+                               notifyDataSetChanged();
+                               progressBar.setVisibility(View.INVISIBLE);
+                           }else Toast.makeText(getContext(),"Failed to delete address",Toast.LENGTH_LONG).show();
+                       });
             });
         }
 

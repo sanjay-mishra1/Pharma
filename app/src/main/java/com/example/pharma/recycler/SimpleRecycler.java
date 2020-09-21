@@ -81,7 +81,7 @@ public class SimpleRecycler extends RecyclerView.Adapter<ViewHolder> {
                     }catch (Exception ignored){}
                 }else{holder.itemView.findViewById(R.id.quantity_bt).setVisibility(View.GONE);
                     holder.itemView.findViewById(R.id.addToCart).setVisibility(View.VISIBLE);
-                    holder.setAddToCartListener(medid,carText);
+                    holder.setAddToCartListener(medid,carText,map.get("medicine_variant"),(long)map.get("medicine_max_quantity"));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -102,6 +102,7 @@ public class SimpleRecycler extends RecyclerView.Adapter<ViewHolder> {
                 holder.setIncreaseMedQuantity((long) map.get("medicine_max_quantity"),medid);
                 holder.setDecreaseMedQuantity(medid);
                 holder.setMedicineQuantity((int) map.get("medicine_quantity"));
+                holder.setBoxListeners(map);
                 holder.itemView.findViewById(R.id.delFromCart).setOnClickListener(v -> {
                     data.remove(position);
                     notifyDataSetChanged();

@@ -10,5 +10,5 @@
         android:startColor="#3ff8f5"
         android:endColor="#acd0ff"/>
 
-    <corners  android:radius="40dp"/>
+    <corners  android:radius="0dp"/>
 </shape>

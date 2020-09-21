@@ -40,7 +40,11 @@ public class HomePageRecycler extends RecyclerView.Adapter<ViewHolder> {
         {   this.type=3;
             return R.layout.ui_element_ad;
         }
-        else {
+        else if (type.contains("ui_buttons")){
+            this.type=5;
+            return R.layout.ui_element_extra_options;
+        }
+        else    {
             this.type=4;
             return R.layout.ui_element_container;
         }
@@ -63,6 +67,8 @@ public class HomePageRecycler extends RecyclerView.Adapter<ViewHolder> {
             holder.setAdFragment(data.get(position));
         else if (type==4)
             holder.setContainer(data.get(position),cartText);
+        else if (type==5)
+            holder.setExtraOptions();
     }
 
     @Override

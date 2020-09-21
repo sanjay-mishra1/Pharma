@@ -32,7 +32,6 @@
           android:id="@+id/card_img"
           android:layout_marginStart="5dp"
           android:scaleType="centerCrop"
-          android:tooltipText="Image"
           android:layout_marginTop="10dp"
           android:background="#F8F8F8"
           android:layout_height="130dp"

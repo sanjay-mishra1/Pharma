@@ -81,9 +81,8 @@ public class Constants {
                 return diffdays+" days ago";
             if (diffdays<30)
                 return diffdays/7+" weeks ago";
-            else return d;
-        }else return d;
-
+        }
+        return getFormattedTime(time,"dd MMM YYYY");
     }
 
     public static Class getActionClassName(String action) {

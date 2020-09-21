@@ -4,14 +4,12 @@
     android:layout_width="wrap_content"
     android:orientation="vertical"
     android:id="@+id/parent"
-    android:paddingBottom="20dp"
     android:layout_height="wrap_content">
 
 <ImageView
     android:layout_width="60dp"
     android:id="@+id/img"
     android:layout_gravity="center"
-
     android:padding="12dp"
     android:background="@drawable/gradient_0"
     android:layout_height="60dp"/>
@@ -21,6 +19,8 @@
     android:textSize="13sp"
     android:textColor="#000"
     android:gravity="center"
+    android:text="kllsjfdljfld  ksjfljsd ljlsjf"
     android:id="@+id/title"
+    android:layout_marginBottom="10dp"
     android:layout_height="wrap_content"/>
 </LinearLayout>

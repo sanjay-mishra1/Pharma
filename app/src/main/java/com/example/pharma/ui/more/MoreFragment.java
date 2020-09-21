@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 public class MoreFragment extends Fragment {
 
@@ -20,8 +20,9 @@ public class MoreFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        moreViewModel =
-                ViewModelProviders.of(this).get(MoreViewModel.class);
+        moreViewModel =new ViewModelProvider(this)
+                //ViewModelProviders.of(this)
+                .get(MoreViewModel.class);
         View root = inflater.inflate(R.layout.fragment_more, container, false);
         final TextView textView = root.findViewById(R.id.text_notifications);
         moreViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {

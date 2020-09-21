@@ -176,7 +176,7 @@
                             android:id="@+id/reminder_from_date_edit"
                             android:layout_width="match_parent"
                             android:textColor="@color/black"
-                            android:inputType="date"
+                            android:inputType="textCapWords"
                             android:layout_height="wrap_content"
                             android:singleLine="true" />
 

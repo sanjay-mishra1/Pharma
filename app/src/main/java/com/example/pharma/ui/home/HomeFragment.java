@@ -3,6 +3,7 @@ package com.example.pharma.ui.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -196,6 +197,14 @@ public class HomeFragment extends Fragment {
     private void loadContent(ArrayList<HashMap<String, Object>> data) {
         shimmerFrameLayout.stopShimmer();
         shimmerFrameLayout.setVisibility(View.GONE);
+        HashMap<String,Object> tempMap=new HashMap<>();
+        tempMap.put("type_name","ui_buttons");
+        if (data.size()<=2)
+            data.add(tempMap);
+        else
+            data.add(2,tempMap);
+
+        Log.e("loadContent","loaded..."+data);
         LinearLayoutManager mLayoutManager =
                 new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);

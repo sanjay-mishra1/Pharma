@@ -272,7 +272,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    void setAddToCartListener(String medicine_id, TextView carText) {
+    void setAddToCartListener(String medicine_id, TextView carText, Object medicine_variant,long max_quant) {
     itemView.findViewById(R.id.addToCart).setOnClickListener(v -> {
     if (Constants.uid==null)
     Constants.uid= Objects.requireNonNull(itemView.getContext()). getSharedPreferences("USER_CREDENTIALS",MODE_PRIVATE).getString("UID",null);
@@ -286,6 +286,8 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     try {
         itemView.findViewById(R.id.quantity_bt).setVisibility(View.VISIBLE);
         itemView.findViewById(R.id.addToCart).setVisibility(View.GONE);
+        setIncreaseMedQuantity(max_quant,medicine_id);
+        setDecreaseMedQuantity(medicine_id);
     }catch (Exception ignored){}
     Toast.makeText(itemView.getContext(),"Added to cart",Toast.LENGTH_SHORT).show();
     FirebaseDatabase.getInstance().getReference("Customers").child(Constants.uid)
@@ -371,11 +373,12 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     }
 
     void setBoxListeners(HashMap<String, Object> map) {
-        itemView.findViewById(R.id.color).setOnClickListener(v -> {
+        itemView.setOnClickListener(v -> {
             Intent intent=new Intent(itemView.getContext(), MedicineDetailsActivity.class);
 //            intent.putExtra("DATA",map);
             intent.putExtra("MEDICINE_ID",(String) map.get("medicine_id"));
             intent.putExtra("MEDICINE_NAME",(String) map.get("medicine_name"));
+            intent.putExtra("MEDICINE_DATA", map);
             Log.e("MapData","->"+map);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             itemView.getContext().startActivity(intent);
@@ -537,6 +540,21 @@ public class ViewHolder extends RecyclerView.ViewHolder {
             intent.putExtra("CID",id);
             intent.putExtra("CNAME",title);
             itemView.getContext().startActivity(intent);
+        });
+    }
+
+    void setExtraOptions() {
+        itemView.findViewById(R.id.needHelp).setOnClickListener(v -> {
+
+        });
+        itemView.findViewById(R.id.callToOrder).setOnClickListener(v -> {
+
+        });
+        itemView.findViewById(R.id.myRefills).setOnClickListener(v -> {
+
+        });
+        itemView.findViewById(R.id.recentMedicines).setOnClickListener(v -> {
+
         });
     }
 }

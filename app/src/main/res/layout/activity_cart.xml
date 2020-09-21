@@ -43,7 +43,6 @@
             android:layout_gravity="center"
             app:shimmer_duration="800"
             android:id="@+id/shimmer"
-            android:visibility="gone"
             app:shimmer_direction="left_to_right"
             app:shimmer_auto_start="true"
             android:layout_height="wrap_content">

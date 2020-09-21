@@ -1,6 +1,9 @@
 package com.example.pharma.reminder;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,17 +16,23 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.pharma.Constants;
 import com.example.pharma.R;
+import com.example.pharma.service.ReminderService;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import static android.content.Context.ALARM_SERVICE;
 
 public class AddNewReminderFragment extends BottomSheetDialogFragment {
     private String title;
@@ -138,38 +147,68 @@ public class AddNewReminderFragment extends BottomSheetDialogFragment {
         Objects.requireNonNull(getView()).findViewById(R.id.actionButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (title==null || time==null)
-                    return;
-                SharedPreferences preferences=getActivity().getSharedPreferences(getString(R.string.reminder_pref_name), Context.MODE_PRIVATE);
-                String slot=preferences.getString(getString(R.string.reminder_pref_name_for_time_slot),
-                        null);
-                String slotString=title+"-"+time;
-                Log.e("Saving Slot...","->"+slotString);
-                showSuccessSnackBar("Creating new reminder...",true,true);
-                if (slot==null){
-                    SharedPreferences.Editor editor=preferences.edit();
-                    Log.e("Saving Slot...","Slot is null new created and saved ");
-                    editor.putString(getString(R.string.reminder_pref_name_for_time_slot),title+"-"+time);
-                    editor.apply();
-
-                }else if (slot.contains(slotString)){
-                    Toast.makeText(getActivity(),"Reminder already exist",Toast.LENGTH_SHORT).show();
+                //setNewReminder();
+                TextInputEditText timeTextEdit=(TextInputEditText)getView().findViewById(R.id.reminder_from_date_edit);
+                String timeText=timeTextEdit.getText().toString().trim();
+                try {
+                if (timeText.contains("delete")){
+                    Intent intent = new Intent(getActivity(), ReminderService.class);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
+                    AlarmManager alarmManager = (AlarmManager)getActivity().getSystemService( ALARM_SERVICE ) ;
+                    alarmManager.cancel(pendingIntent);
+                    Toast.makeText(getActivity(), "ALARM OFF", Toast.LENGTH_SHORT).show();
                 }
+                if (!timeText.contains(":"))
+                    showSuccessSnackBar("Invalid time entered "+timeText,false,false);
                 else{
-                    Log.e("Saving Slot...","Saved");
-                    slot=slot+"->"+slotString;
-                   slot= initializeSlot(slot);
-                   Log.e("Slot Saved",""+slot);
-                    if (slot!=null) {
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.putString(getString(R.string.reminder_pref_name_for_time_slot)
-                                , slot);
-                        editor.apply();
-                    }else showSuccessSnackBar("An error occurred",false,false);
 
+                        String[] text = timeText.split(":");
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.SECOND, 0);
+                        calendar.set(Calendar.MINUTE, Integer.parseInt(text[1]));
+                        calendar.set(Calendar.HOUR, Integer.parseInt(text[0]));
+                        calendar.set(Calendar.AM_PM, text[2].equals("AM") ? Calendar.AM : Calendar.PM);
+                        calendar.add(Calendar.DAY_OF_MONTH, Integer.parseInt(Constants.getFormattedTime(System.currentTimeMillis(), "dd")));
+                        new ConfigureAlarm().createNotification(getActivity(),calendar);
+                }
+                }catch (Exception e){e.printStackTrace();
+                    showSuccessSnackBar("Error occurred when processing your time "+timeText,false,false);
                 }
             }
         });
+    }
+
+    private void setNewReminder() {
+        if (title==null || time==null)
+            return;
+        SharedPreferences preferences=getActivity().getSharedPreferences(getString(R.string.reminder_pref_name), Context.MODE_PRIVATE);
+        String slot=preferences.getString(getString(R.string.reminder_pref_name_for_time_slot),
+                null);
+        String slotString=title+"-"+time;
+        Log.e("Saving Slot...","->"+slotString);
+        showSuccessSnackBar("Creating new reminder...",true,true);
+        if (slot==null){
+            SharedPreferences.Editor editor=preferences.edit();
+            Log.e("Saving Slot...","Slot is null new created and saved ");
+            editor.putString(getString(R.string.reminder_pref_name_for_time_slot),title+"-"+time);
+            editor.apply();
+
+        }else if (slot.contains(slotString)){
+            Toast.makeText(getActivity(),"Reminder already exist",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Log.e("Saving Slot...","Saved");
+            slot=slot+"->"+slotString;
+            slot= initializeSlot(slot);
+            Log.e("Slot Saved",""+slot);
+            if (slot!=null) {
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString(getString(R.string.reminder_pref_name_for_time_slot)
+                        , slot);
+                editor.apply();
+            }else showSuccessSnackBar("An error occurred",false,false);
+
+        }
     }
 
     private String initializeSlot(String slotsString){

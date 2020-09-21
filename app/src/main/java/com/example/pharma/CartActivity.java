@@ -63,14 +63,14 @@ public class CartActivity extends AppCompatActivity {
         TextView chargeText=findViewById(R.id.order_delivery_charge);
         charge=2;
         chargeText.setText("₹ "+charge);
-        calculateTotal(total,finaltotal,saved);
+        calculateTotal(total,finaltotal,saved,false);
         sharedCart.registerOnSharedPreferenceChangeListener((sharedPreferences, key) -> {
-            calculateTotal(total,finaltotal,saved);
+            calculateTotal(total,finaltotal,saved,true);
         });
     }
 
 
-    void calculateTotal(TextView total, TextView finaltotal, TextView saved){
+    void calculateTotal(TextView total, TextView finaltotal, TextView saved,boolean loadEmptyCart){
         int cal=0;
         int originalTotal=0;
         if (medData.size()>0){
@@ -90,7 +90,8 @@ public class CartActivity extends AppCompatActivity {
             totalAmount=cal + charge;
             finaltotal.setText(String.format(Locale.UK,"₹ %d", totalAmount));
         }else{
-            loadEmptyCartUI();
+            if (loadEmptyCart)
+            loadEmptyCartUI("Calculate Total");
         }
 
     }
@@ -111,7 +112,7 @@ public class CartActivity extends AppCompatActivity {
                             getMedicineData(new ArrayList<>(data.keySet()), new ArrayList<>(data.values()), true);
                         }catch (Exception e){e.printStackTrace();}
                     }
-                    else loadEmptyCartUI();
+                    else loadEmptyCartUI("LoadCartData From Realtime");
                 }
 
                 @Override
@@ -122,7 +123,7 @@ public class CartActivity extends AppCompatActivity {
         }
     }
 
-    private void loadEmptyCartUI() {
+    private void loadEmptyCartUI(String from) {
         ShimmerFrameLayout shimmer = findViewById(R.id.shimmer);
         shimmer.stopShimmer();
         shimmer.setVisibility(View.GONE);
@@ -132,6 +133,7 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void loadDataFromLocal(SharedPreferences sharedPreferences) {
+        Log.e("LocalCart","Data from local");
         getMedicineData(new ArrayList<>(sharedPreferences.getAll().keySet()),
                 new ArrayList<>((Collection<? extends Long>) sharedPreferences.getAll().values()),
                 false);
@@ -164,7 +166,6 @@ public class CartActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
             SharedPreferences preferences=getSharedPreferences("Cart",MODE_PRIVATE);
             SharedPreferences.Editor edit=preferences.edit();
-//        if (storeToLocal) edit.putBoolean("CartLoaded", true);
         FirebaseApp app= new FirebaseCustomAuth().loadCustomFirebase(this,"tablethuts-medicines");
         final int[] count = {0};
         for(String id:medicines) {
@@ -183,7 +184,10 @@ public class CartActivity extends AppCompatActivity {
                             map.put("medicine_img", dataSnapshotValue != null ? ((ArrayList<String>) dataSnapshotValue.get("medicine_images")).get(0) : "NA");
                             map.put("medicine_name", dataSnapshotValue != null ? dataSnapshotValue.get("medicine_name") : "NA");
                             map.put("medicine_id", id);
-                            map.put("medicine_price", dataSnapshotValue != null ? dataSnapshotValue.get("medicine_price") : "NA");
+                            map.put("medicine_price", dataSnapshotValue != null ?
+                                    ((HashMap<String,Object>) ((ArrayList<Object>)
+                                            dataSnapshotValue.get("medicine_variant")).get(0))
+                                            .get("medicine_price") : "NA");
                             map.put("medicine_original_price", ((HashMap<String,Object>) ((ArrayList<Object>)
                                     dataSnapshotValue.get("medicine_variant")).get(0)).get("medicine_original_price"));
                             map.put("medicine_max_quantity", dataSnapshotValue != null ? dataSnapshotValue.get("medicine_max_quantity") : "NA");
@@ -204,7 +208,7 @@ public class CartActivity extends AppCompatActivity {
                                 findViewById(R.id.checkoutBt).setVisibility(View.VISIBLE);
 
                             }catch (Exception e){e.printStackTrace();
-                                loadEmptyCartUI();
+                                loadEmptyCartUI("GetMedData");
                             }
                             }
                         }

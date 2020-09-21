@@ -15,8 +15,8 @@
     <style name="AppThemeBlack" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-        <item name="colorPrimary">#000</item>
-        <item name="colorPrimaryDark">#000</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">#fff</item>
         <item name="colorAccent">#000</item>
     </style>
     <style name="AppThemeForChat" parent="Theme.AppCompat.Light.NoActionBar">

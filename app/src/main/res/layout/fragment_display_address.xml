@@ -11,8 +11,8 @@
      <TextView
             android:layout_width="wrap_content"
             android:id="@+id/location_home"
-            android:text="MQ 294"
-            android:textSize="16sp"
+            android:text="Deliver To"
+            android:textSize="14sp"
             android:gravity="center"
             android:textColor="#fff"
             android:layout_height="wrap_content"/>
@@ -20,11 +20,11 @@
             android:layout_width="wrap_content"
             android:id="@+id/location_city"
             android:gravity="center"
-            android:text="Waidhan, MP"
+            android:maxLines="1"
             android:textSize="16sp"
             android:drawablePadding="10dp"
             android:drawableEnd="@drawable/ic_keyboard_arrow_down_black_24dp"
-            android:textColor="#fff"
+            android:textColor="#B1FFFFFF"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 

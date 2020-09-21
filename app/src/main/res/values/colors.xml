@@ -17,13 +17,6 @@
     <color name="green">#00BF0A</color>
     <color name="layout_background">#F2F3F8</color>
     <color name="shimmer_dark">#D0CFCF</color>
-    <!--    <color name="colorPrimary">#006052</color>-->
-<!--    <color name="colorPrimaryDark">#006052</color>-->
-<!--    <color name="colorAccent">#F58560</color>-->
-<!--    <color name="disable_color">#C1A2A2A2</color>-->
-<!--    <color name="top_color">#006052</color>-->
-<!--    <color name="card_background">#FFECE5</color>-->
-<!--    <color name="white">#fff</color>-->
 
     <color name="white">#FFFFFF</color>
     <color name="ivory">#FFFFF0</color>
