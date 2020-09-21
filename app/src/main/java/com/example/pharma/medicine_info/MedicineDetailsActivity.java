@@ -44,7 +44,7 @@ public class MedicineDetailsActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
         receiveData();
     }
-
+//22/09/2020
     private void receiveData() {
 //        MedicineModel model= (MedicineModel) getIntent().getSerializableExtra("DATA");
         String id= getIntent().getStringExtra("MEDICINE_ID");
